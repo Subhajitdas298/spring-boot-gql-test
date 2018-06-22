@@ -19,7 +19,7 @@ public class SpringBootGqlTestApplication {
     @Bean
     GraphQLSchema schema(DataService dataService) {
         return new GraphQLSchemaGenerator()
-                .withOperationsFromSingleton(dataService) //register the service
+                .withOperationsFromSingleton(dataService, DataService.class) //register the service
                 .generate(); //done ;)
     }
 }
