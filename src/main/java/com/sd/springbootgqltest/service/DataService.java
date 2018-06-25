@@ -30,11 +30,13 @@ public class DataService {
 
         dataRepository.deleteById(id);
         try {
-            dataRepository.getOne(id);
-            return false;
+            if (dataRepository.getOne(id) == null) {
+                return true;
+            }
         } catch (Exception e) {
             return true;
         }
+        return false;
     }
 
     @GraphQLQuery
