@@ -16,22 +16,24 @@ import lombok.*;
  */
 @Service
 @AllArgsConstructor
-public class DataService{
-    
+public class DataService {
+
     private final DataRepository dataRepository;
-    
+
     @GraphQLMutation
     public DataItem saveData(@GraphQLArgument(name = "data") String data) {
         return dataRepository.save(new DataItem(new Long(0), data));
     }
-    
+
     @GraphQLMutation
-    public boolean deleteData(@GraphQLArgument(name = "id") Long id){
-        try{
-            dataRepository.deleteById(id);
-            return (dataRepository.getOne(id) == null);
-        }catch(Exception e){
+    public boolean deleteData(@GraphQLArgument(name = "id") Long id) {
+
+        dataRepository.deleteById(id);
+        try {
+            dataRepository.getOne(id);
             return false;
+        } catch (Exception e) {
+            return true;
         }
     }
 
@@ -39,10 +41,10 @@ public class DataService{
     public List<DataItem> allData() {
         return dataRepository.findAll();
     }
-    
+
     @GraphQLQuery
     public DataItem getData(@GraphQLArgument(name = "id") Long id) {
         return dataRepository.getOne(id);
     }
-    
+
 }
