@@ -14,7 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "tt")
-public class TT implements Serializable{
+public class DataItem implements Serializable{
     
     private static final long serialVersionUID = 1L;
     
