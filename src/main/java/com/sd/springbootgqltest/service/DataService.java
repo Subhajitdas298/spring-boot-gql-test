@@ -27,17 +27,9 @@ public class DataService {
 
     @GraphQLMutation
     public boolean deleteData(@GraphQLArgument(name = "id") Long id) {
-
         dataRepository.deleteById(id);
         dataRepository.flush();
-        try {
-            if (dataRepository.getOne(id) == null) {
-                return true;
-            }
-        } catch (Exception e) {
-            return true;
-        }
-        return false;
+        return !dataRepository.existsById(id);
     }
 
     @GraphQLQuery
