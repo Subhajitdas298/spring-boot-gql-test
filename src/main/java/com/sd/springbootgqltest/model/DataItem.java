@@ -13,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tt")
+@Table
 public class DataItem implements Serializable{
     
     private static final long serialVersionUID = 1L;

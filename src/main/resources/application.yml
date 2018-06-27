@@ -1,0 +1,38 @@
+spring:
+  ## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+  datasource:
+    ## For deployment in heroku server
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    ## For testing on local server
+    #url: jdbc:postgresql://localhost:5432/gqltest
+    #username: postgres
+    #password: root
+  jpa:
+    hibernate:
+      ## Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto: update
+    ## Hibernate Properties
+    properties:
+      hibernate:
+        temp:
+          ## Disable feature detection by this undocumented parameter.
+          use_jdbc_metadata_defaults: false
+        ## The SQL dialect makes Hibernate generate better SQL for the chosen database
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+
+
+## GraphQL
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    corsEnabled: true
+
+## GraphiQL
+graphiql:
+    mapping: /
+    endpoint: /graphql
+    enabled: true
+    pageTitle: GraphiQL
